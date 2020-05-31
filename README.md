@@ -27,10 +27,9 @@ code should run with no issues using Python versions 3.x
 ### Project Motivation
 For this project, I was interestested in using disaster response data from Figure Eight to identify most important messages that need immediate response.
 
-### Files
+### File Descriptions
 The full set of data files related to this course are owned by Figure Either [here](https://appen.com/resources/datasets/)
 
-### File Descriptions
 The project consists of 2 CSV files downloaded from Figure Eight. These are the data files. They are named as
   1. disaster_messages.csv
   2. disaster_categories.csv
