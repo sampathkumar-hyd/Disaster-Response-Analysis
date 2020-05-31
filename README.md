@@ -25,7 +25,7 @@ code should run with no issues using Python versions 3.x
 4. Go to http://0.0.0.0:3001/
 
 ### Project Motivation
-For this project, I was interestested in using disaster response data from Figure Eight to identify most important messages that need to be responded immediately.
+For this project, I was interestested in using disaster response data from Figure Eight to identify most important messages that need immediate response.
 
 ### Files
 The full set of data files related to this course are owned by Figure Either [here](https://appen.com/resources/datasets/)
