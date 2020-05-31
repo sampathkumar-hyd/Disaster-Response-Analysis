@@ -38,8 +38,13 @@ The disaster_categories.csv is too big to be uploaded into github and hence has 
 
 ### Results
 
+The application will present a form as shown below. 
 
+![Homepage](images/Image01.png)
 
+The users (people who respond to disaster events) can input any messages that they received in to this form and get a classification about the message. They can decide if the message is important or not based on these classification tags.
+
+![Response](images/Image02.png)
 
 ### Licensing, Authors, and Acknowledgements<a name="licensing"></a>
 The data for this analysis was downloaded from [Kaggle](https://www.kaggle.com/airbnb/seattle/data). Otherwise, feel free to use the code here as you would like!
