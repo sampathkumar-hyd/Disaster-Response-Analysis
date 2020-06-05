@@ -1,7 +1,7 @@
 """
 train_classifier.py
 Udacity - DSND - Disaster Resoponse Project
-To run this script (Example)
+To run this script from models directory
 > python train_classifier.py ../data/<SQLite db name> <Pickle file name>
 """
 
