@@ -33,9 +33,9 @@ from nltk.corpus import stopwords
 def load_data(database_filepath):
     """
     load_data function
-    Arguments:
+    INPUT:
         database_filepath: path to SQLite db
-    Output:
+    OUTPUT:
         X: feature DataFrame
         Y: label DataFrame
     """
@@ -49,9 +49,9 @@ def load_data(database_filepath):
 def tokenize(text):
     """
     tokenize function
-    Arguments:
+    INPUT:
         text: list of text messages (english)
-    Output:
+    OUTPUT:
         clean_tokens: tokenized text, ready for ML modeling
     """
     # Convert to lowercase
@@ -77,9 +77,9 @@ def tokenize(text):
 def build_model():
     """
     build_model function
-    Arguments:
+    INPUT:
         None
-    Output:
+    OUTPUT:
         a Scikit ML Pipeline that processes text messages and then applies a classifier.
     """
     pipeline = Pipeline([
@@ -98,12 +98,12 @@ def build_model():
 def evaluate_model(model, X_test, Y_test):
     """
     evaluate_model function    
-    Arguments:
+    INPUT:
         model: Scikit ML Pipeline
         X_test: test features
         Y_test: test labels
         category_names: label names (multi-output)
-    Output:
+    OUTPUT:
         prints out model performance (accuracy and f1score) detals
     """
 
@@ -116,10 +116,10 @@ def evaluate_model(model, X_test, Y_test):
 def save_model(model, model_filepath):
     """
     save_model function    
-    Arguments:
+    INPUT:
         model: Scikit ML Pipeline
         model_filepath: Destination path to save .pkl file
-    Output:
+    OUTPUT:
         None
     """
 
