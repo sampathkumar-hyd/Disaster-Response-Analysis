@@ -1,3 +1,10 @@
+"""
+train_classifier.py
+Udacity - DSND - Disaster Resoponse Project
+To run this script (Example)
+> python train_classifier.py ../data/<SQLite db name> <Pickle file name>
+"""
+
 import sys
 
 # import libraries
@@ -24,6 +31,15 @@ from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
 
 def load_data(database_filepath):
+    """
+    load_data function
+    Arguments:
+        database_filepath: path to SQLite db
+    Output:
+        X: feature DataFrame
+        Y: label DataFrame
+    """
+
     engine = create_engine('sqlite:///' + database_filepath)
     df = pd.read_sql_table('dr_messages',engine)
     X = df['message']
@@ -31,6 +47,13 @@ def load_data(database_filepath):
     return X, Y
 
 def tokenize(text):
+    """
+    tokenize function
+    Arguments:
+        text: list of text messages (english)
+    Output:
+        clean_tokens: tokenized text, ready for ML modeling
+    """
     # Convert to lowercase
     text = text.lower()
 
@@ -52,6 +75,13 @@ def tokenize(text):
     return text_tokens
 
 def build_model():
+    """
+    build_model function
+    Arguments:
+        None
+    Output:
+        a Scikit ML Pipeline that processes text messages and then applies a classifier.
+    """
     pipeline = Pipeline([
         ('vect',TfidfVectorizer(tokenizer=tokenize)),
         ('tfidf', TfidfTransformer()),
@@ -66,6 +96,17 @@ def build_model():
     return cv
 
 def evaluate_model(model, X_test, Y_test):
+    """
+    evaluate_model function    
+    Arguments:
+        model: Scikit ML Pipeline
+        X_test: test features
+        Y_test: test labels
+        category_names: label names (multi-output)
+    Output:
+        prints out model performance (accuracy and f1score) detals
+    """
+
     y_pred = model.predict(X_test) 
     for i, col in enumerate(Y_test):
         print(col)
@@ -73,10 +114,29 @@ def evaluate_model(model, X_test, Y_test):
     return
 
 def save_model(model, model_filepath):
+    """
+    save_model function    
+    Arguments:
+        model: Scikit ML Pipeline
+        model_filepath: Destination path to save .pkl file
+    Output:
+        None
+    """
+
     pickle.dump(model, open(model_filepath, 'wb'))
     return
 
 def main():
+    """
+    Main function for Train Classifier
+    
+    This function does the following:
+        1) Extract data from SQLite db
+        2) Train ML model on training set
+        3) Estimate model performance on test set
+        4) Save trained model as Pickle
+    """
+ 
     if len(sys.argv) == 3:
         database_filepath, model_filepath = sys.argv[1:]
         print('Loading data...\n    DATABASE: {}'.format(database_filepath))
