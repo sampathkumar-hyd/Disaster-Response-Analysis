@@ -1,3 +1,10 @@
+"""
+process_data.py
+Udacity - DSND - Disaster Resoponse Project
+To run this script from data directory
+> python process_data.py <CSV file containing disaster messages> <CSV file containing message categories> <SQLite database to store processed data>
+"""
+
 # import libraries
 import sys
 import numpy as np
@@ -5,6 +12,15 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 def load_data(messages_filepath, categories_filepath):
+    """
+    load_data function    
+    INPUT:
+        messages_filepath: path to CSV file containing messages
+        categories_filepath: path to CSV file containing message categories
+    OUTPUT:
+        Pandas DataFrame of the data
+    """
+
     messages = pd.read_csv(messages_filepath);
     categories = pd.read_csv(categories_filepath);
 
@@ -13,6 +29,14 @@ def load_data(messages_filepath, categories_filepath):
     return df
 
 def clean_data(df):
+    """
+    clean_data function    
+    INPUT:
+        df: Pandas DataFrame of the raw data
+    OUTPUT:
+        Pandas DataFrame of the cleaned data
+    """
+
     # create a dataframe of the 36 individual category columns
     categories = df.categories.str.split(pat=';',expand=True)
 
@@ -46,12 +70,29 @@ def clean_data(df):
     return df
 
 def save_data(df, database_filename):
+    """
+    save_data function    
+    INPUT:
+        df: Pandas DataFrame of the raw data
+        database_filename: SQLite database file
+    OUTPUT:
+        None
+    """
+
     engine = create_engine('sqlite:///'+database_filename)
     df.to_sql('dr_messages', engine, index=False)
 
 def main():
+    """
+    Main function for Process Data
+    
+    This function does the following:
+        1) Data extraction from .csv
+        2) Data cleaning and pre-processing
+        3) Data saving to SQLite database
+    """
+    
     if len(sys.argv) == 4:
-
         messages_filepath, categories_filepath, database_filepath = sys.argv[1:]
 
         print('Loading data...\n    MESSAGES: {}\n    CATEGORIES: {}'
